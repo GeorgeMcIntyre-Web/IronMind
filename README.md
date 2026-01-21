@@ -51,3 +51,9 @@ pytest
 
 - ProblemSpec: `examples/problem_spec.json`
 - IR: `examples/ir.json`
+
+## Project Docs
+
+- Plan: `PLAN.md`
+- Roadmap: `ROADMAP.md`
+- Developer checklists: `DEV_CHECKLIST.md`
