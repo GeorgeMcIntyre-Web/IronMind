@@ -1,0 +1,28 @@
+{
+  "version": "1.0",
+  "name": "simple_min_cost",
+  "description": "Minimize 3x + 2y with demand constraint",
+  "variables": [
+    {"name": "x", "type": "int", "lower_bound": 0, "upper_bound": 10},
+    {"name": "y", "type": "int", "lower_bound": 0, "upper_bound": 10}
+  ],
+  "constraints": [
+    {
+      "type": "linear",
+      "terms": [
+        {"var": "x", "coeff": 1},
+        {"var": "y", "coeff": 1}
+      ],
+      "operator": ">=",
+      "rhs": 5
+    }
+  ],
+  "objective": {
+    "sense": "minimize",
+    "terms": [
+      {"var": "x", "coeff": 3},
+      {"var": "y", "coeff": 2}
+    ],
+    "constant": 0
+  }
+}

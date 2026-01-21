@@ -1,0 +1,13 @@
+{
+  "text": "Minimize cost with x and y given constraints.",
+  "tables": [
+    {
+      "name": "costs",
+      "columns": ["item", "cost"],
+      "rows": [
+        ["x", 3],
+        ["y", 2]
+      ]
+    }
+  ]
+}

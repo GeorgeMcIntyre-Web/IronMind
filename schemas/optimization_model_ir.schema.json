@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OptimizationModelIR",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "name", "variables", "constraints", "objective"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "pattern": "^1\\.0$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "description": {
+      "type": "string"
+    },
+    "variables": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "type", "lower_bound", "upper_bound"],
+        "properties": {
+          "name": {"type": "string", "minLength": 1},
+          "type": {"type": "string", "enum": ["int"]},
+          "lower_bound": {"type": "integer"},
+          "upper_bound": {"type": "integer"}
+        }
+      }
+    },
+    "constraints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["type", "terms", "operator", "rhs"],
+        "properties": {
+          "type": {"type": "string", "enum": ["linear"]},
+          "terms": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["var", "coeff"],
+              "properties": {
+                "var": {"type": "string", "minLength": 1},
+                "coeff": {"type": "integer"}
+              }
+            }
+          },
+          "operator": {"type": "string", "enum": ["<=", ">=", "="]},
+          "rhs": {"type": "integer"}
+        }
+      }
+    },
+    "objective": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sense", "terms"],
+      "properties": {
+        "sense": {"type": "string", "enum": ["minimize", "maximize"]},
+        "terms": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["var", "coeff"],
+            "properties": {
+              "var": {"type": "string", "minLength": 1},
+              "coeff": {"type": "integer"}
+            }
+          }
+        },
+        "constant": {"type": "integer"}
+      }
+    }
+  }
+}
